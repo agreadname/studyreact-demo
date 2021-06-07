@@ -35,6 +35,8 @@ class Square extends React.Component {
         );
     }
 }
+//函数写法
+
 
 class Board extends React.Component {
     // 定义class内部通用参数
