@@ -22,49 +22,62 @@ class MyjsxReactComponent extends React.Component {
     }
 }
 //class写法
-class Square extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { myclassName: 'square square1' }
-    }
-    render() {
-        return (
-            <button className={this.state.myclassName} onClick={() => { this.props.onClick()}}>
-                {this.props.val}
-            </button>
-        );
-    }
-}
+// class Square extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = { myclassName: 'square square1' }
+//     }
+//     render() {
+//         return (
+//             <button className={this.state.myclassName} onClick={() => { this.props.onClick() }}>
+//                 {this.props.val}
+//             </button>
+//         );
+//     }
+// }
 //函数写法
-
+function Square(props) {
+    return (<button className="square" onClick={props.onClick}>
+        {props.val}
+    </button>)
+}
 
 class Board extends React.Component {
     // 定义class内部通用参数
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={status:'1',squares:Array(9).fill(null)}
+        this.state = { testShow: '1', squares: Array(9).fill(null),xIsNext:true }
     }
     // 个人定制的函数
-    handleClick(i){
+    handleClick(i) {
         const squares = this.state.squares.slice();//相当于复制
-        squares[i] = 'X';
-        this.setState({squares:squares})
+        if (calculateWinner(squares) || squares[i]) {
+            return;
+          }
+        squares[i] =this.state.xIsNext?'X':'O';
+        this.setState({ squares: squares ,xIsNext:!this.state.xIsNext})
     }
 
     renderSquare(i) {
         //在react实例里面注册的一个组件，
-        return <Square val={this.state.squares[i]} onClick={()=>{
+        return <Square val={this.state.squares[i]} onClick={() => {
             this.handleClick(i)
-        }}/>;
+        }} />;
     }
     //最终渲染的参数
     render() {
-        const status = 'Next player: X';
-
+       
+        const winner=calculateWinner(this.state.squares)
+        let status;
+        if(winner){
+            status='winner'+winner
+        }else{
+            status='Next player:'+(this.state.xIsNext?'X':'O');
+        }
         return (
             <div>
                 <div className="status">{status}</div>
-                <div className="status">{this.state.status}</div>
+                {/* <div className="status">{this.state.testShow}</div> */}
                 <div className="board-row">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
@@ -112,3 +125,22 @@ ReactDOM.render(
     <Game />,
     document.getElementById('root')
 );
+function calculateWinner(squares) {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        return squares[a];
+      }
+    }
+    return null;
+  }
