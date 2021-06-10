@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import {TimerView,Timer} from './pages/mobxDemo'
 import {Game} from './pages/game'
 import {UseAxios} from './pages/mylist'
-import './request'
+import {serve} from './request'
 import './index.css';
+React.Component.prototype.$axios=serve
 const myTimer = new Timer()
 
 class Myapp extends React.Component {

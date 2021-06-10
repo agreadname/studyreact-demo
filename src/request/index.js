@@ -12,4 +12,5 @@ serve.interceptors.response.use((response)=>{
     console.log("===响应拦截",response)
     return response
 })
-React.Component.prototype.$axios=serve
+
+export {serve}
