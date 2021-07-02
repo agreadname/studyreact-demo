@@ -39,9 +39,6 @@ function start(){
          }
      }, 1000)
 }
-<<<<<<< HEAD
-start()
-=======
 
 // ========================================
 
@@ -66,4 +63,3 @@ function calculateWinner(squares) {
     }
     return null;
 }
->>>>>>> 5dea0d9e620dc21b3ccdab2b84c7235af85f2d36
