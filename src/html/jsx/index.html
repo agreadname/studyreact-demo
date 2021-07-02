@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>React</title>
+</head>
+
+<body>
+
+  <h4 id="123">容器</h4>
+  <div id="app"></div>
+  <div id="like_button_container"></div>
+  <div id="vdom"></div>
+  <div id="vdomrc"></div>
+  <div id="copyVd"></div>
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <!-- 核心库 -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <!-- react 操作dom -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <!-- 加载Babel 编译jsx用的-->
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js" crossorigin></script>
+  <!-- Load our React component. -->
+  <script src="./like_button.js"></script>
+  <script src="./react_app.js"></script>
+  <script type="text/babel">
+    // jsx创建虚拟dom 不能写单引号
+    const vdom = (
+      <h4>虚拟dom，
+        <p>定义的时候不要加上引号 <span>用括号括起来</span> </p>
+      </h4>
+    )
+    ReactDOM.render(vdom, document.getElementById("vdom"))
+  </script>
+  <script type="text/javascript">
+    //react创建虚拟dom 
+    //标签名，标签属性，标签内容   type,  [props],  [...children]
+    const vdomrc = React.createElement('h4', { id: 'rc' }, "虚拟dom，", React.createElement('span', {}, 'rc创建虚拟dom'))
+    const copyVd = React.cloneElement(vdomrc, { id: 'rc2' })
+    ReactDOM.render(vdomrc, document.getElementById("vdomrc"))
+    ReactDOM.render(copyVd, document.getElementById("copyVd"))
+
+  </script>
+</body>
+
+</html>
