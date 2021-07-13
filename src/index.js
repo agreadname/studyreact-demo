@@ -27,7 +27,7 @@ class Myapp extends React.Component {
 }
 
 
-ReactDOM.render(<Myapp></Myapp>, document.getElementById("root"));
+ReactDOM.render(<Myapp></Myapp>, document.getElementById("root2"));
 
 
 function start(){

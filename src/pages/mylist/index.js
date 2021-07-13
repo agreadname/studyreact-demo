@@ -24,7 +24,9 @@ class UseAxios extends React.Component {
             }
         })
     }
-
+    componentWillUnmount(){
+        this.setState = ()=>false;
+    }
     render() {
         if (this.state.list.length > 0) {
             return (<Mylist list={this.state.list} />)
@@ -36,4 +38,4 @@ class UseAxios extends React.Component {
     }
 }
 
-export {UseAxios}
+export { UseAxios }
