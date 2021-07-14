@@ -29,9 +29,9 @@ class UseAxios extends React.Component {
     }
     render() {
         if (this.state.list.length > 0) {
-            return (<Mylist list={this.state.list} />)
+            return (<Mylist list={this.state.list} ></Mylist>)
         } else {
-            return (<div>数据为空</div>)
+            return (<div>   <div>axios使用案例</div> 数据为空</div>)
         }
 
 

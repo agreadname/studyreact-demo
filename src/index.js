@@ -1,65 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {TimerView,Timer} from './pages/mobxDemo'
-import {Game} from './pages/game'
-import {UseAxios} from './pages/mylist'
-import {serve} from './request'
+import zhCN from 'antd/lib/locale/zh_CN';
+import 'antd/dist/antd.css';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+import { Homewrapper } from './pages/home'
+import { ConfigProvider } from 'antd';
+import { serve } from './request'
 import './index.css';
-React.Component.prototype.$axios=serve
-const myTimer = new Timer()
+moment.locale('zh-cn');
+React.Component.prototype.$axios = serve
+
 
 class Myapp extends React.Component {
-   
-    
+
+
     render(
     ) {
-        return <div>
-            <div>游戏案例</div>
-            <Game />
-            <hr/>
-            <div>axios使用案例</div>
-            <UseAxios></UseAxios>
-            <hr/>
-            <div>倒计时案例（mobx使用）</div>
-            <TimerView timer={myTimer} />
-        </div>
+        return <ConfigProvider locale={zhCN}>
+            <Homewrapper/>
+         
+        </ConfigProvider>
     }
 }
 
 
-ReactDOM.render(<Myapp></Myapp>, document.getElementById("root2"));
+ReactDOM.render(<Myapp></Myapp>, document.getElementById("root"));
 
 
-function start(){
-    let cancelTimer=setInterval(() => {
-        const currentVal= myTimer.increase()
-        
-         if(currentVal>5){
-             clearInterval(cancelTimer)
-         }
-     }, 1000)
-}
 
-// ========================================
-
-ReactDOM.render(<Game />, document.getElementById("root"));
-
-function calculateWinner(squares) {
-    const lines = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ];
-    for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a];
-        }
-    }
-    return null;
-}
