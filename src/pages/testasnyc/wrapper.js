@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-
+console.log("test import ")
 class Testasnyc extends Component {
     render() {
-      const Game1 = require('./index')
+      const Game1 = require('./index')//引入
         return (
-          // <div>{Game1}</div>
           <Game1/>
         )
     }

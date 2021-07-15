@@ -41,7 +41,7 @@ RN组件库：https://gitlab.viomi.com.cn/app/UI/Viomi-Rn-UI.git
 ### [项目代码阅读理解](./项目代码阅读理解.md)
 ### [APP优化](./APP优化.md)
 ### [需要了解的框架](./需要了解的框架.md)
-### [rn-语法](./rn-语法.md)
+### [rn语法](./rn语法.md)
 ### [react](./react.md)
 
 
