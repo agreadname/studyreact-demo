@@ -24,11 +24,7 @@ const appStyles = StyleSheet.create({
         width: deviceWidth,
     },
 });
-   <BaseImage
-                style={appStyles.cover}
-                resizeMode={'cover'}
-                source={require(`./sources/img_home_skeleton_screen.png`)}
-            />
+<BaseImage style={appStyles.cover} resizeMode={'cover'} source={require(`./sources/img_home_skeleton_screen.png`)} />
 ```
 项目中StyleSheet的api看到再说
 
@@ -43,3 +39,14 @@ bottom:0};
 ```
 
 #### 3.propTypes和defaultProps
+```js
+//在class里可直接写 props检验和预设值
+    static propTypes={
+        time:PropTypes.string,
+        title:PropTypes.string,
+
+    }
+    static defaultProps={
+        title:'come from china'
+    }
+```

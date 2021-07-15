@@ -6,6 +6,7 @@ import { Headerui } from '../../components/header'
 import { Footerui } from '../../components/footer'
 import { TimerView } from '../mobxDemo'
 import { Testasnyc } from '../testasnyc/wrapper'
+import  Mytask  from '../mytask/wrapper'
 import { Layout } from 'antd';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
 const { Header, Footer, Content } = Layout;
@@ -20,10 +21,11 @@ class Homewrapper extends React.Component {
                         <Headerui />
                     </Header>
                     <Content className="wrapperStyle">
-                        <Route exact path="/" component={Game} />
+                        <Route exact  path="/" component={Game} />
                         <Route path="/new" component={UseAxios} />
                         <Route path="/TimerView" component={TimerView} />
                         <Route path="/Testasnyc" component={Testasnyc} />
+                        <Route  path="/Mytask" component={Mytask} />
                         
                         
                     </Content>

@@ -7,7 +7,7 @@
 7.版本发布模式：打包一份前端代码放到APP底座 不是直接打包APP 
 8.状态管理：mobx 版本  
 
-金山文档：实际用的  
+金山文档：实际用的  任务排期
 wiki，公司的知识库，更多是归档时用，和查资料时用，  
 jira，公司的项目管理工具  
 - jira的使用姿势: http://www.pmquanzi.com/website/lesson/player/id/64/courseId/938.html  

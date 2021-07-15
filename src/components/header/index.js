@@ -27,15 +27,17 @@ class Headerui extends Component {
 
                 <Menu.Item key="new" >
                     <Link to="/new">   比克国十一</Link>
-                
+
                 </Menu.Item>
                 <Menu.Item key="second" >
-                    <Link to="/Testasnyc">     省一好兄弟</Link>
+                    <Link to="/Testasnyc">   省一好兄弟</Link>
                 </Menu.Item>
-                <SubMenu key="SubMenu" title="Navigation Three - Submenu">
+                <SubMenu key="SubMenu" title="TODO">
                     <Menu.ItemGroup title="Item 1">
-                        <Menu.Item key="setting:1">Option 1</Menu.Item>
-                        <Menu.Item key="setting:2">Option 2</Menu.Item>
+                        <Menu.Item key="setting:1">
+                            <Link to="/Mytask">Mytask</Link>
+                        </Menu.Item>
+                        <Menu.Item key="setting:2">十七YYDS</Menu.Item>
                     </Menu.ItemGroup>
                     <Menu.ItemGroup title="Item 2">
                         <Menu.Item key="setting:3">Option 3</Menu.Item>
