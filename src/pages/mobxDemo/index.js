@@ -2,7 +2,7 @@
 import { makeAutoObservable, observable, action, autorun, computed, runInAction } from "mobx"
 import { observer } from "mobx-react"
 import React from "react"
-import { serve } from '../../request'
+// import { serve } from '../../request'
 const myObservable = observable(0)//定义要被检测的数字
 const getmyComputedValue = computed(() => myObservable.get() > 0)
 // const getmyComputedValue = computed(() => {return myObservable.get() > 0 })

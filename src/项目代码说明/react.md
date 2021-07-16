@@ -88,3 +88,11 @@ MyComponent.propTypes = {
   }
 }
 ```
+### render函数
+ 
+组件与字符串的拼接
+```html
+  <div className="content">
+                    {arr.length>0?this.handleRenderList(arr):<> 暂无数据请先添加 <Addtodo/></>}
+                </div>
+```
