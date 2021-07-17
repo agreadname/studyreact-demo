@@ -23,7 +23,9 @@ class Mytask extends Component {
             initDate: new Date().toLocaleString()
         }
     }
-    onDelete()
+    onDelete(val){
+        console.log("onDelete",val)
+    }
     handleRenderList(arr) {
         const list = arr.map((e, i) => {
             if (!e.isDeleted) return <TodoItem ref={e.id} title={e.title} key={i + e.title} toStatus={e.toStatus} isDeleted={e.isDeleted} onDelete={()=>{this.onDelete(e)}}></TodoItem>

@@ -28,6 +28,7 @@ class TodoItem extends PureComponent {
    onDelete=(e)=>{
        console.log('====================================');
        console.log(e);
+       this.props.onDelete(e)
        console.log('====================================');
    }
    onCollect=(e)=>{
