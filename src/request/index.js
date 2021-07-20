@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+
 let serve=axios.create({timeout:15000})
 // 请求拦截器
 serve.interceptors.request.use((config)=>{
