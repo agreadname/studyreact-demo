@@ -22,14 +22,16 @@ class Mytask extends Component {
         },
       ],
       initDate: new Date().toLocaleString(),
-      showAdd:false
+      showAdd: false,
     };
   }
   onDelete(val) {
     const { arr } = this.state;
 
     arr[val.index].isDeleted = true;
-    this.setState({ arr }, () => { console.log("更新完毕"); });
+    this.setState({ arr }, () => {
+      console.log("更新完毕");
+    });
     //this.replaceState相当于this.state={} setstate相当于 this.state={...this.state,...obj}
   }
   handleRenderList(arr) {
@@ -52,28 +54,55 @@ class Mytask extends Component {
     return list;
   }
   handleAdd() {
-      const {showAdd}=this.state
-      this.setState({showAdd:!showAdd},()=>{
-      })
+    const { showAdd } = this.state;
+    this.setState({ showAdd: !showAdd }, () => {});
   }
- 
+  handleAddArr(e) {
+   const obj= {
+      title: e,
+      toStatus: false,
+      isDeleted: false,
+      id: new Date().getTime(),
+    }
+    const {arr}=this.state
+    arr.push(obj)
+    
+    this.setState({arr,showAdd:false})
+  }
   /**
    *
    * @returns 组件与字符串的拼接
    */
   render() {
-    const { arr, initDate,showAdd } = this.state;
+    const { arr, initDate, showAdd } = this.state;
     return (
       <div>
-        <p>MY TODO <Addtodo onAdd={(e)=>{this.handleAdd(e)}}  /></p>
-        <p><Addform showAdd={showAdd} defaultVal="默认值"/></p>
+        <p>
+          MY TODO{" "}
+          <Addtodo
+            onAdd={(e) => {
+              this.handleAdd(e);
+            }}
+          />
+        </p>
+        <Addform
+          showAdd={showAdd}
+          defaultVal="默认值"
+          onSubmit={(e) => {
+            this.handleAddArr(e);
+          }}
+        />
         <div className="content">
           {arr.length > 0 ? (
             this.handleRenderList(arr)
           ) : (
             <>
-              
-              暂无数据请先添加 <Addtodo onAdd={(e)=>{this.handleAdd(e)}}/>
+              暂无数据请先添加{" "}
+              <Addtodo
+                onAdd={(e) => {
+                  this.handleAdd(e);
+                }}
+              />
             </>
           )}
         </div>
