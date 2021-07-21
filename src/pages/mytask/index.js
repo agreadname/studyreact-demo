@@ -25,10 +25,12 @@ class Mytask extends Component {
       showAdd: false,
     };
   }
-  componentWillMount(){
-    const localItem=JSON.parse(localStorage.getItem("item"))
-    console.log('localItem',localItem)
-    if(localItem){this.setState({arr:localItem})}
+  componentWillMount() {
+    const localItem = JSON.parse(localStorage.getItem("item"));
+    console.log("localItem", localItem);
+    if (localItem) {
+      this.setState({ arr: localItem });
+    }
   }
   onDelete(val) {
     const { arr } = this.state;
@@ -63,17 +65,17 @@ class Mytask extends Component {
     this.setState({ showAdd: !showAdd }, () => {});
   }
   handleAddArr(e) {
-   const obj= {
+    const obj = {
       title: e,
       toStatus: false,
       isDeleted: false,
       id: new Date().getTime(),
-    }
-    const {arr}=this.state
-    arr.push(obj)
-    
-    this.setState({arr,showAdd:false})
-    localStorage.setItem("item",JSON.stringify(arr))
+    };
+    const { arr } = this.state;
+    arr.push(obj);
+
+    this.setState({ arr, showAdd: false });
+    localStorage.setItem("item", JSON.stringify(arr));
   }
   /**
    *
