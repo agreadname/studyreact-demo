@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 class Addtodo extends Component {
     static props={
-        title:PropTypes.string
+        title:PropTypes.string,
+        onAdd:PropTypes.func,
     }
     static defaultProps={
         title:'ADD'
     }
     render() {
         return (
-            <button>{this.props.title}</button>
+            <button onClick={(e)=>{this.props.onAdd(e)}}>{this.props.title}</button>
         );
     }
 }

@@ -1,57 +1,122 @@
-import React, { Component } from 'react';
-import TodoItem from '../../components/listComponent/TodoItem';
-import Addtodo from '../../components/addTodo';
-import './index.css'
+import React, { Component } from "react";
+import TodoItem from "../../components/listComponent/TodoItem";
+import Addtodo from "../../components/addTodo";
+import Addform from "../../components/Addform/Addform";
+import "./index.css";
 class Mytask extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            arr: [
-                {
-                    title: '事项1',
-                    toStatus: false,
-                    isDeleted: false,
-                    id:'1232adf148'
-                },
-                {
-                    title: '事项2',
-                    toStatus: false,
-                    isDeleted: true,
-                    id:'123asdf21ad4s8'
-                },
-            ],
-            initDate: new Date().toLocaleString()
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      arr: [
+        {
+          title: "事项1",
+          toStatus: false,
+          isDeleted: false,
+          id: "1232adf148",
+        },
+        {
+          title: "事项23",
+          toStatus: false,
+          isDeleted: false,
+          id: "123asdf21ad4s8",
+        },
+      ],
+      initDate: new Date().toLocaleString(),
+      showAdd: false,
+    };
+  }
+  componentWillMount() {
+    const localItem = JSON.parse(localStorage.getItem("item"));
+    console.log("localItem", localItem);
+    if (localItem) {
+      this.setState({ arr: localItem });
     }
-    onDelete(val){
-        console.log("onDelete",val)
-    }
-    handleRenderList(arr) {
-        const list = arr.map((e, i) => {
-            if (!e.isDeleted) return <TodoItem ref={e.id} title={e.title} key={i + e.title} toStatus={e.toStatus} isDeleted={e.isDeleted} onDelete={()=>{this.onDelete(e)}}></TodoItem>
-        }
+  }
+  onDelete(val) {
+    const { arr } = this.state;
 
-        )
-        return list
-    }
-    handleAddRender(){
-        return <Addtodo/>
-    }
-    /**
-     * 
-     * @returns 组件与字符串的拼接
-     */
-    render() {
-        const { arr, initDate } = this.state
+    arr[val.index].isDeleted = true;
+    this.setState({ arr }, () => {
+      console.log("更新完毕");
+    });
+    //this.replaceState相当于this.state={} setstate相当于 this.state={...this.state,...obj}
+  }
+  handleRenderList(arr) {
+    const list = arr.map((e, i) => {
+      if (!e.isDeleted)
         return (
-            <div>
-                <p>MY TODO</p>
-                <div className="content">
-                    {arr.length>0?this.handleRenderList(arr):<> 暂无数据请先添加 <Addtodo/></>}
-                </div>
-                <p>TODO初始化时间：{initDate}</p>
-            </div>
+          <TodoItem
+            ref={e.id}
+            title={e.title}
+            key={i + e.title}
+            index={i}
+            toStatus={e.toStatus}
+            isDeleted={e.isDeleted}
+            onDelete={(a) => {
+              this.onDelete(a);
+            }}
+          ></TodoItem>
         );
-    }
+    });
+    return list;
+  }
+  handleAdd() {
+    const { showAdd } = this.state;
+    this.setState({ showAdd: !showAdd }, () => {});
+  }
+  handleAddArr(e) {
+    const obj = {
+      title: e,
+      toStatus: false,
+      isDeleted: false,
+      id: new Date().getTime(),
+    };
+    const { arr } = this.state;
+    arr.push(obj);
+
+    this.setState({ arr, showAdd: false });
+    localStorage.setItem("item", JSON.stringify(arr));
+  }
+  /**
+   *
+   * @returns 组件与字符串的拼接
+   */
+  render() {
+    const { arr, initDate, showAdd } = this.state;
+    return (
+      <div>
+        <p>
+          MY TODO{" "}
+          <Addtodo
+            onAdd={(e) => {
+              this.handleAdd(e);
+            }}
+          />
+        </p>
+        <Addform
+          showAdd={showAdd}
+          defaultVal="默认值"
+          onSubmit={(e) => {
+            this.handleAddArr(e);
+          }}
+        />
+        <div className="content">
+          {arr.length > 0 ? (
+            this.handleRenderList(arr)
+          ) : (
+            <>
+              暂无数据请先添加{" "}
+              <Addtodo
+                onAdd={(e) => {
+                  this.handleAdd(e);
+                }}
+              />
+            </>
+          )}
+        </div>
+        <p>TODO初始化时间：{initDate}</p>
+      </div>
+    );
+  }
 }
-module.exports = Mytask
+module.exports = Mytask;
