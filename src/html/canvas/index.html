@@ -1,0 +1,50 @@
+<!--
+ * @Author: huangse
+ * @Date: 2021-08-18 16:39:50
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script  src="https://cdn.bootcdn.net/ajax/libs/fabric.js/451/fabric.js"></script>
+</head>
+
+<body>
+    <div>
+        <canvas id="canvas" width="800" height="8000"></canvas>
+        <!-- <canvas id="canvas" width="800" height="42000"></canvas> -->
+    </div>
+
+</body>
+<script>
+
+    
+    fabric.Object.prototype.objectCaching = true;
+
+    var canvas = new fabric.Canvas('canvas', {
+        isDrawingMode: true,
+        freeDrawingBrush: new fabric.PencilBrush({ decimate: 8 })
+    });
+
+    canvas.on('before:path:created', function (opt) {
+        var path = opt.path;
+        var pathInfo = fabric.util.getPathSegmentsInfo(path.path);
+        path.segmentsInfo = pathInfo;
+        var pathLength = pathInfo[pathInfo.length - 1].length;
+        var text = 'This is a demo of text on a path. This text should be small enough to fit in what you drawn.';
+        var fontSize = 2.5 * pathLength / text.length;
+        var text = new fabric.Text(text, { fontSize: fontSize, path: path, top: path.top, left: path.left });
+        canvas.add(text);
+    });
+
+    canvas.on('path:created', function (opt) {
+        canvas.remove(opt.path);
+    })
+
+</script>
+
+</html>

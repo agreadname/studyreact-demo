@@ -22,3 +22,21 @@ a1()
 setTimeout(() => {
     a2()
 }, 1200);
+
+function automaticBarrage(){
+    let text='谢谢你们长得这么好看还给我点关注'
+    document.getElementById('').value=text
+    let btn=  document.getElementById('')
+    const event = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+      btn.dispatchEvent(event);      
+    
+}
+
+
+setInterval(()=>{
+    automaticBarrage()
+},9*60*1000)
